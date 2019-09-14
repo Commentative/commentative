@@ -29,12 +29,12 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/submitcontent", async (req, res) => {
+app.get("/newarticle", async (req, res) => {
   const url = req.query.contenturl;
   console.log(url);
   const articleObj = await readabilityParser(url);
   console.log(articleObj);
-  res.send(articleObj);
+  res.render("newarticle", { articleObj });
 });
 
 app.listen(app.get("port"), () => {
