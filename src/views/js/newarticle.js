@@ -30,7 +30,7 @@ function addIndexToParagraphs() {
 }
 
 function addComment() {
-  document.querySelector(".addComment").addEventListener("submit", function(e) {
+  document.querySelector(".addComment").addEventListener("click", function(e) {
     e.preventDefault();
     const reference = document
       .querySelector(".selected")
@@ -54,6 +54,8 @@ function addComment() {
         .then(res => {
           const result = JSON.parse(res);
           history.pushState(null, "", "/" + result.uuid);
+          addNewComment();
+          document.querySelector(".addCommentText").value = "";
         });
     } else {
       const path = window.location.pathname.split("/");
@@ -73,9 +75,29 @@ function addComment() {
         })
         .then(res => {
           console.log(res);
+          addNewComment();
+          document.querySelector(".addCommentText").value = "";
         });
     }
   });
+}
+
+function addNewComment(content = "This is a comment", name = "Jamie") {
+  const newCommentBox = document.querySelector(".new-comment");
+
+  const commentBlock = document.createElement("div");
+  commentBlock.classList.add("comment-block");
+  const commentName = document.createElement("div");
+  commentName.classList.add("comment-name");
+  const commentContent = document.createElement("div");
+  commentContent.classList.add("comment-content");
+  commentContent.innerHTML = content;
+  commentName.innerHTML = name;
+
+  commentBlock.appendChild(commentName);
+  commentBlock.appendChild(commentContent);
+
+  newCommentBox.appendChild(commentBlock);
 }
 
 addIndexToParagraphs();
