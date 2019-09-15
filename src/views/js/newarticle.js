@@ -10,8 +10,8 @@ window.addEventListener("scroll", event => {
     let paragraphHeight = para.offsetHeight;
     let middleOfWindow = window.innerHeight / 2;
     let viewportTopOffset = para.getBoundingClientRect().top;
-    let topBoundary = middleOfWindow - paragraphHeight / 2;
-    let bottomBoundary = middleOfWindow + paragraphHeight / 2;
+    let topBoundary = middleOfWindow - paragraphHeight;
+    let bottomBoundary = middleOfWindow;
     if (
       viewportTopOffset <= bottomBoundary &&
       viewportTopOffset >= topBoundary
