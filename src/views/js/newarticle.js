@@ -1,4 +1,4 @@
-let articleParagraphs = document.querySelectorAll(".article p");
+let articleParagraphs = document.querySelectorAll(".article > div > div > *");
 
 window.addEventListener("scroll", event => {
   let fromTop = window.scrollY;
