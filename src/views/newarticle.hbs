@@ -1,5 +1,7 @@
 <header>
-  <img src="./assets/commentative-logo.svg" height="16" />
+  <a href="/" title="Home" alt="Home">
+    <img src="./assets/commentative-logo.svg" height="16" />
+  </a>
   <button class="button-share">Invite</button>
 </header>
 
@@ -23,6 +25,13 @@
 </div> --}}
 
 <div class="comment-box expanded">
+  <div class="comment-input">
+    <textarea type="text" placeholder="Comment on this paragraph…"></textarea>
+    <a href="#" class="button-send" title="Submit comment" />
+  </div>
+</div>
+
+{{!-- <div class="comment-box expanded">
   <div class="comment-block">
     <div class="comment-info">
       <strong class="comment-name">Anonymous</strong>Sent today at 17:30
@@ -45,7 +54,7 @@
     <a href="#" class="chevron prev inactive" title="previous comment" />
     <a href="#" class="chevron next" title="next comment" />
   </div>
-</div>
+</div> --}}
 
 <footer>
   <div>
