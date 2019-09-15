@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
+const axios = require("axios");
 
 const readabilityParser = require("./helpers/readabilityParser");
 
@@ -31,10 +32,13 @@ app.get("/", (req, res) => {
 
 app.get("/newarticle", async (req, res) => {
   const url = req.query.contenturl;
-  console.log(url);
   const articleObj = await readabilityParser(url);
-  console.log(articleObj);
   res.render("newarticle", { articleObj, page: "newarticle" });
+});
+
+app.get("/:uuid", async (req, res) => {
+  const url = `https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative/${req.params.uuid}`;
+  const result = await axios(url);
 });
 
 app.listen(app.get("port"), () => {
