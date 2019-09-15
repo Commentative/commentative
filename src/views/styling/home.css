@@ -1,3 +1,43 @@
 main {
-  background-color: lightblue;
+  background-color: #F6F7F8;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+ 
 }
+h1{
+  color: red;
+  align-items: center
+
+}
+p {
+  color: black;
+  align-items: center
+  
+}
+
+.button {
+ 
+  color: red;
+  display: block;
+  text-align: center;
+  margin: 15px;
+  
+ 
+}
+.button1 {
+  background: #E9EAEB;
+  color: white;
+  padding: 1rem 2rem;  
+  border: none;
+  border-radius: 4px;
+}
+  .button1.active{
+    background: #F03B52;
+    display: block;
+    margin-top: 2.5rem;
+}
+
+
