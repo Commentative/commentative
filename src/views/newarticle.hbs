@@ -1,3 +1,57 @@
-<h1>{{articleObj.title}}</h1>
-<h2>{{articleObj.siteName}}</h2>
-<div class="article" style="border:4px solid red">{{{articleObj.content}}}</div>
+<header>
+  <img src="./assets/commentative-logo.svg" height="16" />
+  <button class="button-share">Invite</button>
+</header>
+
+<div class="content">
+  <h1>{{articleObj.title}}</h1>
+  <h2>{{articleObj.siteName}}</h2>
+  <div class="post-meta">
+    <small>3 people talking about this</small>
+  </div>
+  {{{articleObj.content}}}
+</div>
+
+{{!-- <div class="comment-box collapsed">
+  <div class="comment-inner">
+    <div class="comment-icon">
+      <img src="./assets/ic-comment.svg" width="24" height="24" />
+      5
+    </div>
+    <div class="comment-preview">Marianna: I don’t like this introduc…</div>
+  </div>
+</div> --}}
+
+<div class="comment-box expanded">
+  <div class="comment-block">
+    <div class="comment-info">
+      <strong class="comment-name">Anonymous</strong>Sent today at 17:30
+    </div>
+    <div class="comment-content">I think this might be the most profound thing I’ve read since sliced bread. That said,
+      the bit about radiation is probably bullshit.</div>
+  </div>
+  <div class="comment-block">
+    <div class="comment-info">
+      <strong class="comment-name">Anonymous</strong>Sent today at 17:30
+    </div>
+    <div class="comment-content">I think this might be the most profound thing I’ve read since sliced bread. That said,
+      the bit about radiation is probably bullshit.</div>
+  </div>
+  <div class="comment-input">
+    <input type="text" placeholder="Comment on this paragraph" />
+    <a href="#" class="button-send active" title="Submit comment" />
+  </div>
+  <div class="prev-next">
+    <a href="#" class="chevron prev inactive" title="previous comment" />
+    <a href="#" class="chevron next" title="next comment" />
+  </div>
+</div>
+
+<footer>
+  <div>
+    <strong>Commentative</strong><br />
+    Host a discussion about anything online.
+    <br /><br />Built at
+    <a href="https://hackthepress.org/" title="Hack the Press">Hack the Press</a>
+  </div>
+</footer>
