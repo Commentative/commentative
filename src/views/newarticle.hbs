@@ -4,8 +4,8 @@
 </header>
 
 <div class="content">
-  <h1>{{articleObj.title}}</h1>
-  <h2>{{articleObj.siteName}}</h2>
+  <h1>Johnson to tell Juncker: ‘I won’t discuss Brexit extension beyond 31 October’</h1>
+  <h2>The Guardian</h2>
   <div class="post-meta">
     <small>3 people talking about this</small>
   </div>
@@ -25,27 +25,23 @@
 </div> --}}
 
 <div class="comment-box expanded">
+  {{#if articleObj.comments}}
+  {{#each articleObj.comments}}
   <div class="comment-block">
     <div class="comment-info">
-      <strong class="comment-name">Anonymous</strong>Sent today at 17:30
+      <strong class="comment-name">{{this.user}}</strong>
     </div>
-    <div class="comment-content">I think this might be the most profound thing I’ve read since sliced bread. That said,
-      the bit about radiation is probably bullshit.</div>
+    <div class="comment-content">{{this.body}}</div>
   </div>
-  <div class="comment-block">
-    <div class="comment-info">
-      <strong class="comment-name">Anonymous</strong>Sent today at 17:30
-    </div>
-    <div class="comment-content">I think this might be the most profound thing I’ve read since sliced bread. That said,
-      the bit about radiation is probably bullshit.</div>
-  </div>
+  {{/each}}
+  {{/if}}
   <div class="comment-input">
     <input type="text" placeholder="Comment on this paragraph" />
-    <a href="#" class="button-send active" title="Submit comment" />
+    <a href="#" class="button-send active" title="Submit comment" ></a>
   </div>
   <div class="prev-next">
-    <a href="#" class="chevron prev inactive" title="previous comment" />
-    <a href="#" class="chevron next" title="next comment" />
+    <a href="#" class="chevron prev inactive" title="previous comment" ></a>
+    <a href="#" class="chevron next" title="next comment" ></a>
   </div>
 </div>
 

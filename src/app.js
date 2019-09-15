@@ -39,6 +39,12 @@ app.get("/newarticle", async (req, res) => {
 app.get("/:uuid", async (req, res) => {
   const url = `https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative/${req.params.uuid}`;
   const result = await axios(url);
+  const articleObj = {
+    content: result.data.articleBody,
+    comments: result.data.comments
+  };
+  console.log(articleObj);
+  res.render("newarticle", { articleObj, page: "newarticle" });
 });
 
 app.listen(app.get("port"), () => {
