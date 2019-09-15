@@ -101,8 +101,8 @@ footer strong {
 }
 
 .comment-box.expanded {
+  display: flex;
   left: 0;
-  right: 0;
   bottom: 0;
 }
 
