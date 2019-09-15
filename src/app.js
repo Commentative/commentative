@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("port", process.env.PORT || 3000);
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/views"));
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { page: "home" });
 });
 
 app.get("/newarticle", async (req, res) => {
@@ -34,7 +34,7 @@ app.get("/newarticle", async (req, res) => {
   console.log(url);
   const articleObj = await readabilityParser(url);
   console.log(articleObj);
-  res.render("newarticle", { articleObj });
+  res.render("newarticle", { articleObj, page: "newarticle" });
 });
 
 app.listen(app.get("port"), () => {
