@@ -24,7 +24,7 @@ p {
 	font-size: 1.25rem;
 }
 
-#readability-page-1 div p:first-child {
+.selected {
 	background: rgba(240, 59, 82, 0.1);
 	margin-left: -1rem;
 	margin-right: -1rem;
@@ -73,7 +73,7 @@ footer strong {
 .button-share {
 	background: #f03b52;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-	padding: 0.75rem 1.5rem;
+	padding: 0.5rem 1rem;
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 1px;
@@ -146,8 +146,9 @@ footer strong {
 }
 
 .comment-input {
-	padding: 1rem 4rem 1rem 1rem;
+	padding: 1rem;
 	font-size: 1rem;
+	width: 100%;
 	position: relative;
 	min-height: 2rem;
 }
