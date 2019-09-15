@@ -1,3 +1,12 @@
 <h1>{{articleObj.title}}</h1>
 <h2>{{articleObj.siteName}}</h2>
 <div class="article" style="border:4px solid red">{{{articleObj.content}}}</div>
+<form action="#" autocomplete="off" method="get" class="addComment">
+    <input class="addCommentText" type="text" name="contenturl">
+    <input type="submit" value="Add comment">
+</form>
+<form action="#" autocomplete="off" method="get" class="submitComments">
+    <input type="text" name="contenturl">
+    <input type="submit" value="Submit comments">
+</form>
+<input type="hidden" class="articleBody" value="{{articleObj.content}}">
