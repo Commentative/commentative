@@ -1,3 +1,196 @@
-main {
-  background-color: lightblue;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+  color: #3e444d;
+  margin: 0;
+}
+
+h1 {
+  font-family: freight-text-pro, serif;
+  font-weight: lighter;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin-top: 6rem;
+}
+
+h1,
+h2 {
+  color: black;
+}
+
+p {
+  font-family: freight-text-pro, serif;
+  font-size: 1.25rem;
+}
+
+.selected {
+  background: rgba(240, 59, 82, 0.1);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+a {
+  color: #f03b52;
+  text-decoration: none;
+}
+
+header,
+.content {
+  max-width: 28em;
+  margin: 1.5rem 1.5rem;
+}
+
+.content {
+  margin-bottom: 8rem;
+}
+
+.post-meta {
+  margin: 0 0 2rem;
+  color: #8a9099;
+}
+
+footer {
+  margin: 0;
+  width: 100%;
+  background: #f6f7f8;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+footer div {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #999;
+}
+
+footer strong {
+  font-weight: 600;
+}
+
+.button-share {
+  background: #f03b52;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 0.8125rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Comment box --------------------------  */
+
+.comment-box {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: #ddd 1px solid;
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.2);
+}
+
+.comment-box.expanded {
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.comment-box.expanded div:first-child {
+  margin-top: 0.5rem;
+}
+
+.comment-inner {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.comment-icon {
+  display: flex;
+  padding-right: 1rem;
+  align-items: center;
+  color: #666;
+}
+
+.comment-preview:first-word {
+  font-weight: bold;
+}
+
+.comment-block {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.comment-info {
+  margin-bottom: 1rem;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.comment-name {
+  font-weight: bold;
+  display: inline;
+  margin-right: 0.5rem;
+  color: #f03b52;
+}
+
+.comment-input {
+  padding: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  position: relative;
+  min-height: 2rem;
+}
+
+.button-send {
+  background-image: url(../assets/ic-send.svg);
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.button-send.active {
+  background-image: url(../assets/ic-send-active.svg);
+}
+
+.prev-next {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.chevron {
+  background-image: url(../assets/ic-chevron.svg);
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.chevron.prev {
+  transform: rotate(180deg);
+  margin-right: 1rem;
+}
+
+.chevron-next {
+  display: inline;
+  background-image: url(../assets/ic-chevron.svg);
+  transform: rotate(180deg);
+}
+
+.chevron.inactive {
+  opacity: 0.4;
 }

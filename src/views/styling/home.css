@@ -5,7 +5,6 @@ main {
   align-items: center;
   flex-direction: column;
   height: 100vh;
- 
 }
 h1{
   color: red;
