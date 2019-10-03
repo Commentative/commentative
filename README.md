@@ -18,7 +18,18 @@ Commentative aims to help those interactions by doing three things differently:
 * **Open:** People don't limit their conversations about content to specific websites or content types. 
 * **Friendly:** A URL is shared between people who already know each other. So no infectious toxicity.
 
-[See the HackThePress demo slides here](./docs/Commentative slides.pdf)
+[See slides from the Hack the Press demo](https://github.com/Commentative/commentative/blob/master/docs/Commentative%20slides.pdf)
+
+## Contributing
+
+We're keen to encourage as wide a range of contributions as possible. Please see the [wiki on GitHub](https://github.com/Commentative/commentative/wiki) for further information.
+
+## Authors
+- [@zr00083](https://github.com/zr00083)
+- [@samstephenson](https://github.com/samstephenson)
+- [@reubengt](https://github.com/reubengt)
+- [@mbanerjeepalmer](https://github.com/mbanerjeepalmer)
+- [@jamiebrown201](https://github.com/jamiebrown201)
 
 ## Made at HackThePress
 This project was made at the [HackThePress 2019 Hackathon](https://www.hackthepress.org/2019-hackathon/) in London.
