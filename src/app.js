@@ -36,16 +36,17 @@ app.get("/newarticle", async (req, res) => {
   res.render("newarticle", { articleObj, page: "newarticle" });
 });
 
-app.get("/:uuid", async (req, res) => {
-  const url = `https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative/${req.params.uuid}`;
-  const result = await axios(url);
-  const articleObj = {
-    content: result.data.articleBody,
-    comments: result.data.comments
-  };
-  console.log(articleObj);
-  res.render("newarticle", { articleObj, page: "newarticle" });
-});
+// app.get("/:uuid", async (req, res) => {
+//   const url = `https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative/${req.params.uuid}`;
+//   const result = await axios(url);
+//   const articleObj = {
+//     header: "This is the actual header of the article",
+//     content: result.data.articleBody,
+//     comments: result.data.comments
+//   };
+//   console.log(articleObj);
+//   res.render("newarticle", { articleObj, page: "newarticle" });
+// });
 
 app.listen(app.get("port"), () => {
   console.log("App running on port", app.get("port"));
