@@ -16,7 +16,7 @@ app.engine(
     extname: "hbs",
     layoutsDir: path.join(__dirname, "views", "layouts"),
     partialsDir: path.join(__dirname, "views", "partials"),
-    defaultLayout: "main"
+    defaultLayout: "main",
   })
 );
 
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("port", process.env.PORT || 3000);
 
-app.use(express.static(__dirname + "/views"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("home", { page: "home" });
