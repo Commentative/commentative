@@ -160,3 +160,26 @@ function addNewComment(
 }
 
 document.querySelector(".addComment").addEventListener("click", submitComment);
+//the following is to update the comment box as the user types multiple lines
+function updateSize(e) {
+  let text = e.target.value;
+  //regex checks for return and newline, or return, or newline.
+  //different platforms have different character inputs for the enter key!!
+  //makes the number of rows in the text area the same as the number of new lines in the text.
+  e.target.rows = text.split(/\r\n|\r|\n/).length;
+}
+
+function keyDownUpdateSize(e) {
+  updateSize(e);
+}
+
+function keyUpUpdateSize(e) {
+  updateSize(e);
+}
+
+document
+  .querySelector(".addCommentTextArea")
+  .addEventListener("keydown", keyDownUpdateSize);
+document
+  .querySelector(".addCommentTextArea")
+  .addEventListener("keyup", keyUpUpdateSize);
