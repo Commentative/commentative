@@ -19,7 +19,6 @@ function updateVisibleComments(selectedParagraphReference) {
   const comments = document.querySelectorAll(".comment-block");
   comments.forEach((commentBlock) => {
     //commentParagraphReference is the id of the paragraph that the comment has been added to
-    console.log("commentBlock", commentBlock);
     let commentParagraphReference = commentBlock.getAttribute(
       "data-article-element-index"
     );
@@ -103,7 +102,6 @@ function submitComment(e) {
     })
       .then((res) => res.json())
       .then((articleObj) => {
-        console.log(articleObj);
         //TODO - move this step to backend, changing the url like this seems hackyyy
         history.pushState(null, "", "/" + articleObj.uuid);
         addNewComment(
@@ -128,8 +126,6 @@ function submitComment(e) {
       .then((res) => res.json())
       .then((commentObj) => {
         //the api returns the body and the paragraph index(reference) of the newly created comment
-        console.log(commentObj);
-        console.log(commentObj[0].body);
         addNewComment(commentObj[0].body, user, commentObj[0].reference);
         document.querySelector(".addCommentText").value = "";
       });
