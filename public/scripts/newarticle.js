@@ -75,7 +75,7 @@ function submitComment(e) {
     .querySelector(".selected")
     .getAttribute("data-article-element-index");
   //body is the text content of the comment
-  const body = document.querySelector(".addCommentText").value;
+  const body = document.querySelector(".addCommentTextArea").value;
   const user = "🖊️";
   if (firstSubmit) {
     //articleBody is a text only copy of the article(minus unnecessary html tags)
@@ -109,7 +109,7 @@ function submitComment(e) {
           user,
           articleObj.comments[0].reference
         );
-        document.querySelector(".addCommentText").value = "";
+        document.querySelector(".addCommentTextArea").value = "";
       });
   } else {
     const path = window.location.pathname.split("/");
@@ -127,7 +127,7 @@ function submitComment(e) {
       .then((commentObj) => {
         //the api returns the body and the paragraph index(reference) of the newly created comment
         addNewComment(commentObj[0].body, user, commentObj[0].reference);
-        document.querySelector(".addCommentText").value = "";
+        document.querySelector(".addCommentTextArea").value = "";
       });
   }
 }
