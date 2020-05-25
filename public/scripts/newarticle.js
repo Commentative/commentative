@@ -4,29 +4,6 @@ let firstSubmit = true;
 let url =
   "https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative";
 
-// This is an ongoing check to see which element is in the middle of the screen.
-// Then it adds a class 'selected'.
-// .selected is the state used so styling knows what to highlight
-// and so commenting functionality knows which paragraph index to set as the reference
-window.addEventListener("scroll", (event) => {
-  let fromTop = window.scrollY;
-  articleParagraphs.forEach((para) => {
-    let paragraphHeight = para.offsetHeight;
-    let middleOfWindow = window.innerHeight / 2;
-    let viewportTopOffset = para.getBoundingClientRect().top;
-    let topBoundary = middleOfWindow - paragraphHeight;
-    let bottomBoundary = middleOfWindow;
-    if (
-      viewportTopOffset <= bottomBoundary &&
-      viewportTopOffset >= topBoundary
-    ) {
-      para.classList.add("selected");
-    } else {
-      para.classList.remove("selected");
-    }
-  });
-});
-
 // This is a one-off process that happens when an article is first added.
 // TODO: Perhaps this should happen as part of the Readability parser process, rather than here.
 function addIndexToParagraphs() {
@@ -34,6 +11,62 @@ function addIndexToParagraphs() {
     element.setAttribute("data-article-element-index", index + 1);
   });
 }
+
+addIndexToParagraphs();
+
+function updateVisibleComments(selectedParagraphReference) {
+  console.log("updatingComments");
+  const comments = document.querySelectorAll(".comment-block");
+  comments.forEach((commentBlock) => {
+    //commentParagraphReference is the id of the paragraph that the comment has been added to
+    console.log("commentBlock", commentBlock);
+    let commentParagraphReference = commentBlock.getAttribute(
+      "data-article-element-index"
+    );
+    //if it matches the current selected paragraph then display the comment
+    if (commentParagraphReference === selectedParagraphReference) {
+      commentBlock.style.display = "block";
+    }
+    //else hide all comments that dont relate to the current paragraph
+    else {
+      commentBlock.style.display = "none";
+    }
+  });
+}
+
+// This is an ongoing check to see which element is in the middle of the screen.
+// Then it adds a class 'selected'.
+// .selected is the state used so styling knows what to highlight
+// and so commenting functionality knows which paragraph index to set as the reference
+
+//variable to keep track of the most recently selected paragraph, to avoid unnecessary updates
+let selectedParagraphReference = 0;
+
+window.addEventListener("scroll", (event) => {
+  let fromTop = window.scrollY;
+  articleParagraphs.forEach((para) => {
+    let currentParagraphReference = para.getAttribute(
+      "data-article-element-index"
+    );
+    let paragraphHeight = para.offsetHeight;
+    let middleOfWindow = window.innerHeight / 2;
+    let viewportTopOffset = para.getBoundingClientRect().top;
+    let topBoundary = middleOfWindow - paragraphHeight;
+    let bottomBoundary = middleOfWindow;
+    if (
+      viewportTopOffset <= bottomBoundary &&
+      viewportTopOffset >= topBoundary &&
+      selectedParagraphReference !== currentParagraphReference
+    ) {
+      para.classList.add("selected");
+      //updates the comment box to show comments with the paragraph index of the currently highlighted paragraph
+      updateVisibleComments(currentParagraphReference);
+      selectedParagraphReference = currentParagraphReference;
+    } else if (selectedParagraphReference !== currentParagraphReference) {
+      para.classList.remove("selected");
+    }
+  });
+});
 
 // function to submit comments to backend
 function submitComment(e) {
@@ -71,9 +104,13 @@ function submitComment(e) {
       .then((res) => res.json())
       .then((articleObj) => {
         console.log(articleObj);
-        //TODO - move this step to backend
+        //TODO - move this step to backend, changing the url like this seems hackyyy
         history.pushState(null, "", "/" + articleObj.uuid);
-        addNewComment(articleObj.comments[0].body, user);
+        addNewComment(
+          articleObj.comments[0].body,
+          user,
+          articleObj.comments[0].reference
+        );
         document.querySelector(".addCommentText").value = "";
       });
   } else {
@@ -93,30 +130,37 @@ function submitComment(e) {
         //the api returns the body and the paragraph index(reference) of the newly created comment
         console.log(commentObj);
         console.log(commentObj[0].body);
-        addNewComment(commentObj[0].body, user);
+        addNewComment(commentObj[0].body, user, commentObj[0].reference);
         document.querySelector(".addCommentText").value = "";
       });
   }
 }
 
 //function to add a new comment to the frontend display
-function addNewComment(content = "This is a comment", name = "Jamie") {
-  const newCommentBox = document.querySelector(".new-comment");
+function addNewComment(
+  content = "This is a comment",
+  name = "Jamie",
+  reference
+) {
+  const commentsBox = document.querySelector(".comments");
 
-  const commentBlock = document.createElement("div");
-  commentBlock.classList.add("comment-block");
+  const newCommentBlock = document.createElement("div");
+  newCommentBlock.classList.add("comment-block");
+  newCommentBlock.setAttribute("data-article-element-index", reference);
+
   const commentName = document.createElement("div");
   commentName.classList.add("comment-name");
+
   const commentContent = document.createElement("div");
   commentContent.classList.add("comment-content");
+
   commentContent.innerHTML = content;
   commentName.innerHTML = name;
 
-  commentBlock.appendChild(commentName);
-  commentBlock.appendChild(commentContent);
+  newCommentBlock.appendChild(commentName);
+  newCommentBlock.appendChild(commentContent);
 
-  newCommentBox.appendChild(commentBlock);
+  commentsBox.appendChild(newCommentBlock);
 }
 
-addIndexToParagraphs();
 document.querySelector(".addComment").addEventListener("click", submitComment);
