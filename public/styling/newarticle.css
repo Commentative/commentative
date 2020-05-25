@@ -26,6 +26,17 @@ p {
   background: white;
 }
 
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+button:active,
+button:focus {
+  border: none;
+  outline: none;
+}
 .selected {
   background: rgba(240, 59, 82, 0.1);
   padding: 0.5rem;
@@ -138,6 +149,27 @@ footer strong {
   color: #666;
 } */
 .comments {
+  position: relative;
+}
+
+.prev-next {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.navbutton {
+  width: 1.5rem;
+  height: 1.5rem;
+  outline: none;
+  background-image: url("assets/ic-chevron.svg");
+}
+
+.navbutton:active {
+  opacity: 0.4;
+}
+.prev-comment-button {
+  transform: rotate(180deg);
 }
 
 .comment-block {
@@ -186,34 +218,6 @@ footer strong {
   right: 1rem;
 }
 
-.button-send.active {
+.button-send:active {
   background-image: url(../assets/ic-send-active.svg);
-}
-
-.prev-next {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.chevron {
-  background-image: url(../assets/ic-chevron.svg);
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.chevron.prev {
-  transform: rotate(180deg);
-  margin-right: 1rem;
-}
-
-.chevron-next {
-  display: inline;
-  background-image: url(../assets/ic-chevron.svg);
-  transform: rotate(180deg);
-}
-
-.chevron.inactive {
-  opacity: 0.4;
 }
