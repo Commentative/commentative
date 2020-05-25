@@ -20,28 +20,33 @@ function updateVisibleComments(selectedParagraphReference) {
   const prevButton = document.querySelector(".prev-comment-button");
   const nextButton = document.querySelector(".next-comment-button");
   let hasComments = false;
-  comments.forEach((commentBlock) => {
-    //commentParagraphReference is the id of the paragraph that the comment has been added to
-    let commentParagraphReference = commentBlock.getAttribute(
-      "data-article-element-index"
-    );
-    //if it matches the current selected paragraph then display the comment
-    if (commentParagraphReference === selectedParagraphReference) {
-      commentBlock.style.display = "block";
-      hasComments = true;
+  if (comments) {
+    comments.forEach((commentBlock) => {
+      //commentParagraphReference is the id of the paragraph that the comment has been added to
+      let commentParagraphReference = commentBlock.getAttribute(
+        "data-article-element-index"
+      );
+      //if it matches the current selected paragraph then display the comment
+      if (commentParagraphReference === selectedParagraphReference) {
+        commentBlock.classList.add("currentparagraph");
+        hasComments = true;
+      }
+      //else hide all comments that dont relate to the current paragraph
+      else {
+        commentBlock.style.display = "none";
+      }
+    });
+    if (hasComments && comments.length > 1) {
+      prevButton.style.display = "inline-block";
+      nextButton.style.display = "inline-block";
+    } else {
+      prevButton.style.display = "none";
+      nextButton.style.display = "none";
     }
-    //else hide all comments that dont relate to the current paragraph
-    else {
-      commentBlock.style.display = "none";
-    }
-  });
-  if (hasComments && comments.length > 1) {
-    prevButton.style.display = "inline-block";
-    nextButton.style.display = "inline-block";
-  } else {
-    prevButton.style.display = "none";
-    nextButton.style.display = "none";
   }
+  //display the very first comment for the current paragraph(the rest remain hidden at this point)
+  let firstComment = document.querySelector(".currentparagraph");
+  if (firstComment) firstComment.style.display = "block";
 }
 
 // This is an ongoing check to see which element is in the middle of the screen.
@@ -158,7 +163,8 @@ function addNewComment(
   const newCommentBlock = document.createElement("div");
   newCommentBlock.classList.add("comment-block");
   newCommentBlock.setAttribute("data-article-element-index", reference);
-
+  //initially display none, the updateComments function and the comment navigation(showNewComment) change the comments to visible as needed
+  newCommentBlock.style.display = "none";
   const commentName = document.createElement("div");
   commentName.classList.add("comment-name");
 
@@ -191,10 +197,39 @@ function keyDownUpdateSize(e) {
 function keyUpUpdateSize(e) {
   updateSize(e);
 }
+let commentInput = document.querySelector(".addCommentTextArea");
 
-document
-  .querySelector(".addCommentTextArea")
-  .addEventListener("keydown", keyDownUpdateSize);
-document
-  .querySelector(".addCommentTextArea")
-  .addEventListener("keyup", keyUpUpdateSize);
+commentInput.addEventListener("keydown", keyDownUpdateSize);
+commentInput.addEventListener("keyup", keyUpUpdateSize);
+
+//The following is for comment navigation
+let commentIndex = 1;
+
+function showNewComment(index) {
+  let comments = document.querySelectorAll(".currentparagraph");
+  if (index > comments.length) {
+    commentIndex = 1;
+  }
+  if (index < 1) {
+    commentIndex = comments.length;
+  }
+  //set everything to display none
+  for (let i = 0; i < comments.length; i++) {
+    comments[i].style.display = "none";
+  }
+  //set the comment at the new index to be visible
+  comments[commentIndex - 1].style.display = "block";
+}
+
+let prevCommentButton = document.querySelector(".prev-comment-button");
+let nextCommentButton = document.querySelector(".next-comment-button");
+
+prevCommentButton.addEventListener("click", (e) => {
+  commentIndex -= 1;
+  showNewComment(commentIndex);
+});
+
+nextCommentButton.addEventListener("click", (e) => {
+  commentIndex += 1;
+  showNewComment(commentIndex);
+});

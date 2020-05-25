@@ -162,7 +162,7 @@ footer strong {
   width: 1.5rem;
   height: 1.5rem;
   outline: none;
-  background-image: url("assets/ic-chevron.svg");
+  background-image: url("../assets/ic-chevron.svg");
 }
 
 .navbutton:active {
