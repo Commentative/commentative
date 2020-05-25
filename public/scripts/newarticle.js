@@ -33,6 +33,7 @@ function updateVisibleComments(selectedParagraphReference) {
       }
       //else hide all comments that dont relate to the current paragraph
       else {
+        commentBlock.classList.remove("currentparagraph");
         commentBlock.style.display = "none";
       }
     });
