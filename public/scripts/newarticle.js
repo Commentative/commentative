@@ -17,6 +17,9 @@ addIndexToParagraphs();
 function updateVisibleComments(selectedParagraphReference) {
   console.log("updatingComments");
   const comments = document.querySelectorAll(".comment-block");
+  const prevButton = document.querySelector(".prev-comment-button");
+  const nextButton = document.querySelector(".next-comment-button");
+  let hasComments = false;
   comments.forEach((commentBlock) => {
     //commentParagraphReference is the id of the paragraph that the comment has been added to
     let commentParagraphReference = commentBlock.getAttribute(
@@ -25,12 +28,20 @@ function updateVisibleComments(selectedParagraphReference) {
     //if it matches the current selected paragraph then display the comment
     if (commentParagraphReference === selectedParagraphReference) {
       commentBlock.style.display = "block";
+      hasComments = true;
     }
     //else hide all comments that dont relate to the current paragraph
     else {
       commentBlock.style.display = "none";
     }
   });
+  if (hasComments && comments.length > 1) {
+    prevButton.style.display = "inline-block";
+    nextButton.style.display = "inline-block";
+  } else {
+    prevButton.style.display = "none";
+    nextButton.style.display = "none";
+  }
 }
 
 // This is an ongoing check to see which element is in the middle of the screen.
@@ -76,6 +87,8 @@ function submitComment(e) {
     .getAttribute("data-article-element-index");
   //body is the text content of the comment
   const body = document.querySelector(".addCommentTextArea").value;
+  //dont submit empty comment
+  if (body.trim() === "") return;
   const user = "🖊️";
   if (firstSubmit) {
     //articleBody is a text only copy of the article(minus unnecessary html tags)
@@ -109,6 +122,7 @@ function submitComment(e) {
           user,
           articleObj.comments[0].reference
         );
+        updateVisibleComments(articleObj.comments[0].reference);
         document.querySelector(".addCommentTextArea").value = "";
       });
   } else {
@@ -127,6 +141,7 @@ function submitComment(e) {
       .then((commentObj) => {
         //the api returns the body and the paragraph index(reference) of the newly created comment
         addNewComment(commentObj[0].body, user, commentObj[0].reference);
+        updateVisibleComments(commentObj[0].reference);
         document.querySelector(".addCommentTextArea").value = "";
       });
   }
