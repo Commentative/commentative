@@ -2,7 +2,7 @@
     <a href="/" title="Home" alt="Home">
         <img class="logo" src="./assets/commentative-logo-icon.svg" height="48" />
     </a>
-    <button class="button-share">Invite</button>
+    <button class="button-share" data-share-link={{articleObj.shareLink}}>Invite</button>
 </header>
 
 <div class="content">
@@ -37,11 +37,11 @@
         </div>
         {{#if articleObj.comments}}
         {{#each articleObj.comments}}
-        <div class="comment-block">
+        <div class="comment-block" data-article-element-index="{{this.0.reference}}" style="display: none">
             <div class="comment-info">
-                <strong class="comment-name">{{this.user}}</strong>
+                <strong class="comment-name">{{this.0.user}}</strong>
             </div>
-            <div class="comment-content">{{this.body}}</div>
+            <div class="comment-content">{{this.0.body}}</div>
         </div>
         {{/each}}
         {{/if}}
