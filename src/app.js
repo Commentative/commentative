@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("port", process.env.PORT || 3000);
 
 app.use(express.static("public"));
+app.use(express.static("node_modules"));
 
 app.get("/", (req, res, next) => {
   res.render("home", { page: "home" });
@@ -33,7 +34,6 @@ app.get("/", (req, res, next) => {
 app.post("/newarticle", async (req, res, next) => {
   const articleUrl = req.body.contenturl;
   const articleBody = await readabilityParser(articleUrl);
-  console.log("article body after readability", articleBody);
   const backendUrl =
     "https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative";
   //no user and no commentData because at this point we're just submitting the article Body
@@ -42,7 +42,6 @@ app.post("/newarticle", async (req, res, next) => {
     .post(backendUrl, params)
     .then((res) => res.data)
     .then((articleObj) => {
-      //   console.log(articleObj);
       res.redirect(`/${articleObj.uuid}`);
     })
     .catch((err) => {
@@ -53,14 +52,14 @@ app.post("/newarticle", async (req, res, next) => {
 app.get("/:uuid", async (req, res) => {
   const url = `https://8rj0xswzt3.execute-api.eu-west-1.amazonaws.com/dev/commentative/${req.params.uuid}`;
   const result = await axios(url);
+  const inviteLink = req.protocol + "://" + req.get("host") + req.originalUrl;
   const articleObj = {
-    header: "This is the actual header of the article",
+    inviteLink,
     content: result.data.articleBody.content,
     siteName: result.data.articleBody.siteName,
     title: result.data.articleBody.title,
     comments: result.data.comments,
   };
-  //   console.log(articleObj);
   res.render("newarticle", { articleObj, page: "newarticle" });
 });
 
