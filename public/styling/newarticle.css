@@ -172,6 +172,7 @@ footer strong {
 }
 .prev-comment-button {
   transform: rotate(180deg);
+  margin-right: 1rem;
 }
 
 .comment-block {
@@ -191,7 +192,9 @@ footer strong {
   margin-right: 0.5rem;
   color: #f03b52;
 }
-
+.comment-content {
+  word-wrap: break-word;
+}
 .comment-input {
   padding: 1rem;
   font-size: 1rem;
