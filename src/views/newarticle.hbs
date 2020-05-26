@@ -2,7 +2,7 @@
     <a href="/" title="Home" alt="Home">
         <img class="logo" src="./assets/commentative-logo-icon.svg" height="48" />
     </a>
-    <button class="button-share">Invite</button>
+    <button class="button-invite" data-clipboard-text={{articleObj.inviteLink}}>Invite</button>
 </header>
 
 <div class="content">
@@ -31,25 +31,26 @@
 
 <div class="comment-box expanded">
     <div class="comments">
+        <div class="prev-next">
+          <button class="navbutton prev-comment-button" style="display: none">
+          <button class="navbutton next-comment-button" style="display: none">
+        </div>
         {{#if articleObj.comments}}
         {{#each articleObj.comments}}
-        <div class="comment-block">
+        <div class="comment-block" data-article-element-index="{{this.0.reference}}" style="display: none">
             <div class="comment-info">
-                <strong class="comment-name">{{this.user}}</strong>
+                <strong class="comment-name">{{this.0.user}}</strong>
             </div>
-            <div class="comment-content">{{this.body}}</div>
+            <div class="comment-content">{{this.0.body}}</div>
         </div>
         {{/each}}
         {{/if}}
     </div>
     <div class="comment-input">
         <textarea class="addCommentTextArea" rows="1" placeholder="Comment on this paragraph.."></textarea>
-        <a href="#" class="addComment button-send active" title="Submit comment"></a>
+        <button class="addComment button-send" title="Submit comment"></button>
     </div>
 </div>
-<input class="articleBody" type="hidden" value={{articleObj.content}}>
-
-
 <footer>
     <div>
         <strong>Commentative</strong><br />
