@@ -1,25 +1,28 @@
 <header>
-    <a href="/" title="Home" alt="Home">
-        <img class="logo" src="./assets/commentative-logo-icon.svg" height="48" />
-    </a>
-    <button class="button-invite" data-clipboard-text={{articleObj.inviteLink}}>Invite</button>
+  <a href="/" title="Home" alt="Home">
+    <img class="logo" src="./assets/commentative-logo-icon.svg" height="48" />
+  </a>
+  <button
+    class="button-invite"
+    data-clipboard-text={{articleObj.inviteLink}}
+  >Invite</button>
 </header>
 
 <div class="content">
-    {{!-- <h1>Johnson to tell Juncker: ‘I won’t discuss Brexit extension beyond 31 October’</h1> --}}
-    <h1>{{{articleObj.title}}}</h1>
-    {{!-- TODO:
-        Make mapping of native siteNames to how we need them to appear on the page --}}
-    <h2>{{{articleObj.siteName}}}</h2>
-    <div class="post-meta">
-        <small>3 people talking about this</small>
-    </div>
-    <div class=article>
-        {{{articleObj.content}}}
-    </div>
+  {{! <h1>Johnson to tell Juncker: ‘I won’t discuss Brexit extension beyond 31 October’</h1> }}
+  <h1>{{{articleObj.title}}}</h1>
+  {{! TODO:
+        Make mapping of native siteNames to how we need them to appear on the page }}
+  <h2>{{{articleObj.siteName}}}</h2>
+  <div class="post-meta">
+    <small>3 people talking about this</small>
+  </div>
+  <div class="article">
+    {{{articleObj.content}}}
+  </div>
 </div>
 
-{{!-- <div class="comment-box collapsed">
+{{! <div class="comment-box collapsed">
   <div class="comment-inner">
     <div class="comment-icon">
       <img src="./assets/ic-comment.svg" width="24" height="24" />
@@ -27,35 +30,59 @@
     </div>
     <div class="comment-preview">Marianna: I don’t like this introduc…</div>
   </div>
-</div> --}}
+</div> }}
 
 <div class="comment-box expanded">
-    <div class="comments">
-        <div class="prev-next">
-          <button class="navbutton prev-comment-button" style="display: none">
-          <button class="navbutton next-comment-button" style="display: none">
-        </div>
-        {{#if articleObj.comments}}
-        {{#each articleObj.comments}}
-        <div class="comment-block" data-article-element-index="{{this.0.reference}}" style="display: none">
-            <div class="comment-info">
-                <strong class="comment-name">{{this.0.user}}</strong>
-            </div>
-            <div class="comment-content">{{this.0.body}}</div>
-        </div>
-        {{/each}}
-        {{/if}}
+  <div class="comments">
+    <div class="prev-next">
+      <button
+        class="navbutton prev-comment-button"
+        style="display: none"
+      ></button>
+      <button
+        class="navbutton next-comment-button"
+        style="display: none"
+      ></button>
     </div>
-    <div class="comment-input">
-        <textarea class="addCommentTextArea" rows="1" placeholder="Comment on this paragraph.."></textarea>
-        <button class="addComment button-send" title="Submit comment"></button>
-    </div>
+    {{#if articleObj.comments}}
+      {{#each articleObj.comments}}
+        <div
+          class="comment-block"
+          data-article-element-index="{{this.0.reference}}"
+          style="display: none"
+        >
+          <div class="comment-info">
+            <strong class="comment-name">
+              {{#if this.0.user}}
+                {{this.0.user}}
+              {{else}}
+                Anonymous User
+              {{/if}}
+            </strong>
+          </div>
+          <div class="comment-content">{{this.0.body}}</div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class="comment-input">
+    <textarea
+      class="addCommentTextArea"
+      rows="1"
+      placeholder="Comment on this paragraph.."
+    ></textarea>
+    <button class="addComment button-send" title="Submit comment"></button>
+  </div>
 </div>
 <footer>
-    <div>
-        <strong>Commentative</strong><br />
-        Host a discussion about anything online.
-        <br /><br />Built at
-        <a target="_blank" href="https://hackthepress.org/" title="Hack the Press">Hack the Press</a>
-    </div>
+  <div>
+    <strong>Commentative</strong><br />
+    Host a discussion about anything online.
+    <br /><br />Built at
+    <a
+      target="_blank"
+      href="https://hackthepress.org/"
+      title="Hack the Press"
+    >Hack the Press</a>
+  </div>
 </footer>
