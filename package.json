@@ -23,7 +23,7 @@
     "clipboard": "^2.0.6",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.5.0",
     "node-fetch": "^2.6.7",
     "readability": "git+https://github.com/mozilla/readability.git",
     "request": "^2.88.0",
