@@ -206,8 +206,7 @@ new ClipboardJS(inviteButton);
 inviteButton.addEventListener("click", (e) => {
   Swal.fire({
     title: "Success!",
-    text:
-      "The invite link has been copied to your clipboard. Send it to a friend so they can comment on this article!",
+    text: "The invite link has been copied to your clipboard. Send it to a friend so they can comment on this article!",
     icon: "success",
     confirmButtonText: "OK",
   });
